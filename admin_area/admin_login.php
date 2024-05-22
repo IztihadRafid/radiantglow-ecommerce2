@@ -64,6 +64,10 @@ session_start();
                         <label for="admin_password" class='form-label'>Password</label>
                         <input type="password" id="admin_password" class='form-control' placeholder="Enter Your Password" autocomplete='off' required='required' name='admin_password'>
                     </div>
+                    <div class="form-outline mb-4">
+                        <label for="pin" class='form-label'>Admin PIN</label>
+                        <input type="text" id="pin" class='form-control' placeholder="Enter PIN" autocomplete='off' required='required' name='pin'>
+                    </div>
                     <div class="mt-4 pt-2 d-flex justify-content-between align-items-center">
                         <input type="submit" value="Login" class='btn btn-login py-3 px-3 border-0 text-white rounded-3' name='admin_login'>
                         <p class='fw-bold mt-2 p-2'>Don’t Have An Account? <a href="admin_registration.php" class="login-link">Register</a></p>
@@ -81,7 +85,9 @@ session_start();
 if (isset($_POST['admin_login'])) {
     $admin_username = $_POST['admin_username'];
     $admin_password = $_POST['admin_password'];
+    $admin_pin = $_POST['pin'];
 
+    // Query to select admin details
     $select_query = "SELECT * FROM `admin_table` WHERE admin_username='$admin_username'";
     $result = mysqli_query($con, $select_query);
     $row_count = mysqli_num_rows($result);
@@ -90,14 +96,21 @@ if (isset($_POST['admin_login'])) {
 
     // Check if the admin exists
     if ($row_count > 0) {
-        $_SESSION['admin_username'] = $admin_username;
         // Verify password
         if (password_verify($admin_password, $row_data['admin_password'])) {
-         if ($row_count == 1) {
+            // Query to check admin PIN
+            $pin_query = "SELECT * FROM `admin_pin` WHERE pin='$admin_pin'";
+            $pin_result = mysqli_query($con, $pin_query);
+            $pin_count = mysqli_num_rows($pin_result);
+
+            // Verify PIN
+            if ($pin_count > 0) {
                 $_SESSION['admin_username'] = $admin_username;
                 echo "<script>alert('Login successful')</script>";
                 echo "<script>window.location.href = './index.php'</script>";
-            } 
+            } else {
+                echo "<script>alert('Invalid PIN')</script>";
+            }
         } else {
             echo "<script>alert('Invalid Credentials')</script>";
         }

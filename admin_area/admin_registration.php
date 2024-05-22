@@ -44,7 +44,7 @@ include('../includes/connect.php');
 </head>
 <body>
     <div class="container-fluid my-3">
-        <h2 class="text-center">Admin Registration</h2>
+        <h2 class="text-center p-4">Admin Registration</h2>
         <div class="row d-flex align-items-center justify-content-center">
             <div class="col-lg-12 col-xl-6">
                 <div class="form-container bg-white">
@@ -73,6 +73,10 @@ include('../includes/connect.php');
                             <label for="conf_admin_password" class='form-label'>Confirm Password</label>
                             <input type="password" id="conf_admin_password" class='form-control' placeholder="Confirm Your Password" autocomplete='off' required='required' name='conf_admin_password'>
                         </div>
+                        <div class="form-outline mb-4">
+                            <label for="pin" class='form-label'>Enter Admin PIN</label>
+                            <input type="text" id="pin" class='form-control' placeholder="PIN" autocomplete='off' required='required' name='pin'>
+                        </div>
                         <div class="mt-4 pt-2">
                             <input type="submit" value="Register" class='btn btn-register py-3 px-3 border-0 text-white rounded-3' name='admin_register'>
                             <p class='fw-bold mt-2 p-2 text-center'>Already Have An Account? <a href="admin_login.php" class="login-link">Login</a></p>
@@ -87,41 +91,54 @@ include('../includes/connect.php');
 
 <!-- PHP Code -->
 <?php 
-if(isset($_POST['admin_register'])){
+if (isset($_POST['admin_register'])) {
     $admin_username = $_POST['admin_username'];
     $admin_email = $_POST['admin_email'];
     $admin_password = $_POST['admin_password'];
     $conf_admin_password = $_POST['conf_admin_password'];
+    $admin_pin = $_POST['pin'];
 
     // Check if username or email already exists
-    $select_query = "SELECT * FROM `admin_table` WHERE admin_username='$admin_username' OR admin_email='$admin_email'";
-    $result = mysqli_query($con, $select_query);
-    $rows_count = mysqli_num_rows($result);
+    $select_query = $con->prepare("SELECT * FROM `admin_table` WHERE admin_username=? OR admin_email=?");
+    $select_query->bind_param("ss", $admin_username, $admin_email);
+    $select_query->execute();
+    $result = $select_query->get_result();
+    $rows_count = $result->num_rows;
 
     if ($rows_count > 0) {
         echo "<script>alert('Username or Email already exists');</script>";
     } elseif ($admin_password != $conf_admin_password) {
         echo "<script>alert('Passwords do not match');</script>";
-    } 
-    // Password validation
-    elseif(strlen($admin_password) < 6 || !preg_match("/[A-Z]/", $admin_password) || !preg_match("/[\W]/", $admin_password)){
+    } elseif (strlen($admin_password) < 6 || !preg_match("/[A-Z]/", $admin_password) || !preg_match("/[\W]/", $admin_password)) {
         echo "<script>alert('Password must be at least 6 characters long, contain at least one uppercase letter and one special character');</script>";
-    }
-    else {
+    } else {
         // Hash the password
         $hash_password = password_hash($admin_password, PASSWORD_DEFAULT);
 
-        // Insert query
-        $insert_query = "INSERT INTO `admin_table` (admin_username, admin_email, admin_password) VALUES ('$admin_username', '$admin_email', '$hash_password')";
-        $sql_execute = mysqli_query($con, $insert_query);
+        // Check if the entered PIN matches the stored PIN
+        $pin_query = $con->prepare("SELECT * FROM `admin_pin` WHERE pin=?");
+        $pin_query->bind_param("s", $admin_pin);
+        $pin_query->execute();
+        $pin_result = $pin_query->get_result();
+        $pin_count = $pin_result->num_rows;
 
-        if ($sql_execute) {
-            echo "<script>alert('Registration successful');</script>";
-            echo "<script>window.open('./admin_login.php', '_self')</script>";
+        if ($pin_count > 0) {
+            // Insert query for admin registration
+            $insert_query = $con->prepare("INSERT INTO `admin_table` (admin_username, admin_email, admin_password) VALUES (?, ?, ?)");
+            $insert_query->bind_param("sss", $admin_username, $admin_email, $hash_password);
+            $sql_execute = $insert_query->execute();
+
+            if ($sql_execute) {
+                echo "<script>alert('Registration successful');</script>";
+                echo "<script>window.open('./admin_login.php', '_self')</script>";
+            } else {
+                echo "<script>alert('Error: Registration failed');</script>";
+            }
         } else {
-            echo "<script>alert('Error: Registration failed');</script>";
+            echo "<script>alert('Invalid PIN');</script>";
         }
     }
 }
+?>
 ?>
 
