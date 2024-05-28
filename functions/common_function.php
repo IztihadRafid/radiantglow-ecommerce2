@@ -2,7 +2,11 @@
 // including connection file
 // include("./includes/connect.php");
 
-//getting products
+
+
+//==================================
+//          getting products
+//====================================
 function getproducts(){
     global $con;
 

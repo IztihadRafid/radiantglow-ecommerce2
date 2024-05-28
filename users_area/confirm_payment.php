@@ -54,9 +54,11 @@ $result_orders=mysqli_query($con, $update_orders);
 <div>
   <select name="payment_mode" class="form-select w-50 m-auto" required>
     <option value="" disabled selected hidden>Select Payment Mode</option>
-    <option>UPI</option>
+    
     <option>Net Banking</option>
     <option>Paypal</option>
+    <option>Bkash</option>
+    <option>Nagad</option>
     <option>Cash On Delivery</option>
   </select>
 </div>

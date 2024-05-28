@@ -12,6 +12,7 @@
         <?php
  $select_brand="select * from `brands`";
  $result=mysqli_query($con,$select_brand);
+
  $number=0;
  while ($row=mysqli_fetch_assoc($result)){
     $brand_id=$row['brand_id'];

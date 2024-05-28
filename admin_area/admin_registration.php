@@ -75,7 +75,7 @@ include('../includes/connect.php');
                         </div>
                         <div class="form-outline mb-4">
                             <label for="pin" class='form-label'>Enter Admin PIN</label>
-                            <input type="text" id="pin" class='form-control' placeholder="PIN" autocomplete='off' required='required' name='pin'>
+                            <input type="password" id="pin" class='form-control' placeholder="PIN" autocomplete='off' required='required' name='pin'>
                         </div>
                         <div class="mt-4 pt-2">
                             <input type="submit" value="Register" class='btn btn-register py-3 px-3 border-0 text-white rounded-3' name='admin_register'>

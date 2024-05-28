@@ -5,9 +5,7 @@
         $get_users = "select * from `user_table`";
         $result = mysqli_query($con, $get_users);
         $row_count = mysqli_num_rows($result);
-   
-
-        if ($row_count == 0) {
+       if ($row_count == 0) {
             echo "<h2 class= 'text-danger text-center mt-5'>No Users Yet </h2>";
         } else {
             echo "
@@ -32,22 +30,35 @@
                 $user_address = $row_data['user_address'];
                 $user_mobile = $row_data['user_mobile'];
                 $number++;
-                echo "
-        <tr>
-        <td>$number</td>
-        <td>$username</td>
-        <td>$user_email</td>
-        <td><img src='../users_area/user_images/$user_image' alt='$username' class='product_img'/></td>
-        <td> $user_address</td>
-        <td> $user_mobile</td>
-        <td><a href='./index.php?delete_all_users' class='text-light' ><i class='fa-solid fa-trash'></i></a></td>
-        </tr>";
+?>
+        <tr class="text-center">
+            <td><?php echo $number; ?></td>
+            <td><?php echo $username;?></td>
+            <td><?php echo $user_email;?></td>
+            <td><img src='../users_area/user_images/<?php echo $user_image; ?>' class='product_img' /></td>
+             <td><?php echo $user_address;?></td>
+              <td><?php echo $user_mobile;?></td>
+            <td><a href='index.php?delete_all_users=<?php echo $user_id?>' type="button" class="text-light" data-toggle="modal" data-target="#exampleModal"><i class='fa-solid fa-trash'></i></a></td>
 
-            }
-        }
-        ?>
-
-
-
-        </tbody>
+        </tr>
+<?php
+ }
+}
+?>
+    </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">  
+      <div class="modal-body">
+        <h5>Are you sure you want to delete this?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="./index.php?list_users" class='text-light text-decoration-none'>No</a></button>
+        <button type="button" class="btn btn-primary"><a href='index.php?delete_all_users=<?php echo $user_id?>' class="text-light text-decoration-none" >Yes</a></button>
+      </div>
+    </div>
+  </div>
+</div>

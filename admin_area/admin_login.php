@@ -16,35 +16,35 @@ session_start();
     <style>
     body {
         overflow-x: hidden;
-        background-color: #f8f9fa; /* Set a light gray background color */
+        background-color: #f8f9fa; 
     }
     .form-container {
-        background-color: #d1ecf1; /* Set form background color as bg-info */
-        padding: 20px; /* Add some padding */
-        border-radius: 10px; /* Rounded corners */
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        background-color: #d1ecf1; 
+        padding: 20px; 
+        border-radius: 10px; 
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
     }
     .form-label {
-        color: #212529; /* Set label color */
+        color: #212529;
     }
     .form-control {
-        background-color: #fff; /* Set input background color */
+        background-color: #fff;
     }
     .btn-login {
-        background-color: #dc3545; /* Set login button background color */
-        border-color: #dc3545; /* Set login button border color */
+        background-color: #dc3545; 
+        border-color: #dc3545; 
     }
     .btn-login:hover {
-        background-color: #c82333; /* Darken login button color on hover */
-        border-color: #bd2130; /* Darken login button border color on hover */
+        background-color: #c82333; 
+        border-color: #bd2130; 
     }
     .btn-register {
-        color: #0d6efd; /* Set register link text color */
-        text-decoration: none; /* Remove default underline */
+        color: #0d6efd; 
+        text-decoration: none; 
     }
     .btn-register:hover {
-        color: #0b5ed7; /* Darken register link text color on hover */
-        text-decoration: underline; /* Underline register link on hover */
+        color: #0b5ed7; 
+        text-decoration: underline; 
     }
     </style>
 </head>
@@ -66,7 +66,7 @@ session_start();
                     </div>
                     <div class="form-outline mb-4">
                         <label for="pin" class='form-label'>Admin PIN</label>
-                        <input type="text" id="pin" class='form-control' placeholder="Enter PIN" autocomplete='off' required='required' name='pin'>
+                        <input type="password" id="pin" class='form-control' placeholder="Enter PIN" autocomplete='off' required='required' name='pin'>
                     </div>
                     <div class="mt-4 pt-2 d-flex justify-content-between align-items-center">
                         <input type="submit" value="Login" class='btn btn-login py-3 px-3 border-0 text-white rounded-3' name='admin_login'>

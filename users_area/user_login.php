@@ -65,7 +65,7 @@ include('../functions/common_function.php');
                         <div class="mt-4 pt-2">
                             <input type="submit" value="Login" class="btn btn-login py-3 px-3 border-0 text-white rounded-3" name="user_login">
                             <p class="fw-bold mt-2 p-2 text-center">Don't Have An Account? <a href="user_registration.php" class="register-link">Register</a></p>
-                            <p class="fw-bold mt-2 p-2 text-center"><a href="OTP.php" class="register-link">Forget Password</a></p>
+                            <!-- <p class="fw-bold mt-2 p-2 text-center"><a href="OTP.php" class="register-link">Forget Password</a></p> -->
                         </div>
                     </form>  
                 </div>

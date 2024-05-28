@@ -81,13 +81,13 @@ overflow-x: hidden;
         </nav>
 
         <!-- second child -->
-        <div class="bg-light">
-            <h3 class="text-center p-3">Admin Dashboard</h3>
+        <div class="bg-light p-4 mt-4">
+            <h1 class="text-center p-3">Admin Dashboard</h1>
         </div>
 
         <!-- third child -->
-        <div class="row ">
-            <div class="col-md-12 bg-secondary p-2  align-items-center">
+        <div class="row py-4 px-0">
+            <div class="col-md-12 bg-secondary p-4  align-items-center">
                 
                 <div class="button text-center">
                     <button class='btn-inventory'><a href="insert_product.php" class="nav-link  bg-info my-1 text-dark fw-bold">Insert Products</a></button>
@@ -155,6 +155,9 @@ overflow-x: hidden;
         if(isset($_GET['list_users'])){
             include('list_users.php');
         }
+        if(isset($_GET['delete_all_users'])){
+            include('delete_all_users.php');
+        }
         
     ?>
     
@@ -163,7 +166,7 @@ overflow-x: hidden;
 
 
         <!-- last child FOOTER -->
-       <?php include("../includes/footer.php"); ?>
+       
     </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -33,7 +33,7 @@ session_start();
         <nav class="navbar navbar-expand-lg navbar-light custom_bg-black">
             <div class="container-fluid">
                 <img id="logo-image" src="images/logopic.png" alt="">
-                <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -56,7 +56,7 @@ session_start();
                         }
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Contact</a>
+                            <a class="nav-link text-white" href="contact_us.php">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="cart.php"><i class="fa-solid fa-cart-shopping"><sup><?php cart_item();?></sup></i></a>
@@ -146,7 +146,7 @@ session_start();
                 <ul class="navbar-nav me-auto text-center">
                     <li class="nav-item bg-info">
                         <a href="#" class="nav-link text-white">
-                            <h4>Delivary Brands</h4>
+                            <h4>Brands</h4>
                         </a>
                     </li>
                     <?php
