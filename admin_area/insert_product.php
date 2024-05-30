@@ -7,7 +7,7 @@ if(isset($_POST["insert_product"])){
     $product_category=$_POST['product_category'];
     $product_brands=$_POST['product_brands'];
     $product_price=$_POST['product_price'];
-    $product_status='true';
+    $product_status='in stock';
     // accessing images
     $product_image1=$_FILES['product_image1']['name'];
     $product_image2=$_FILES['product_image2']['name'];

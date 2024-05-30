@@ -51,8 +51,8 @@ if ($result_query) {
 
 
 // orders pending
-$insert_pending_orders = "Insert into `orders_pending` (user_id, amount_due
-invoice_number, product_id, quantity, order_status) values ($user_id, $amount_due
+$insert_pending_orders = "Insert into `orders_pending` (user_id, 
+invoice_number, product_id, quantity, order_status) values ($user_id,
 $invoice_number, $product_id, $quantity, '$status')";
 $result_pending_orders = mysqli_query($con, $insert_pending_orders);
 

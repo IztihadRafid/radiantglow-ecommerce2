@@ -162,6 +162,7 @@ echo "<li class='nav-item'>
 
                         <a class="nav-link text-light" href="profile.php?delete_account">Delete Account</a>
                     </li>
+                    
                    
                 </ul>
             </div>
@@ -180,6 +181,7 @@ echo "<li class='nav-item'>
                         if(isset($_GET['delete_account'])){
                             include('delete_account.php');
                         }
+                        
 
                 ?>
             </div>

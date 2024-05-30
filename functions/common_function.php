@@ -329,9 +329,9 @@ if(isset($_GET['add_to_cart'])){
     }
 }
 }
-//===========================================
-//         Function to get Cart item number
-//===========================================
+//=====================================================
+//        Function to get Cart item number supercript
+//=====================================================
 function cart_item(){
     if(isset($_GET['add_to_cart'])){
         global $con;
